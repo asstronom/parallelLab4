@@ -11,68 +11,68 @@ const (
 	arrayLen = 5
 )
 
-func SortFuture(array []int64) chan []int64 {
-	future := make(chan []int64)
-	go func() {
-		sort.Slice(array, func(i, j int) bool {
-			return array[i] < array[j]
-		})
-		future <- array
-	}()
-	return future
-}
+// func SortFuture(array []int64) chan []int64 {
+// 	future := make(chan []int64)
+// 	go func() {
+// 		sort.Slice(array, func(i, j int) bool {
+// 			return array[i] < array[j]
+// 		})
+// 		future <- array
+// 	}()
+// 	return future
+// }
 
-func MultiplyFuture(array []int64) chan []int64 {
-	future := make(chan []int64)
-	go func() {
-		for i := range array {
-			array[i] *= 2
-		}
-		future <- array
-	}()
-	return future
-}
+// func MultiplyFuture(array []int64) chan []int64 {
+// 	future := make(chan []int64)
+// 	go func() {
+// 		for i := range array {
+// 			array[i] *= 2
+// 		}
+// 		future <- array
+// 	}()
+// 	return future
+// }
 
-func DivideFuture(array []int64, divider int64) chan []int64 {
-	future := make(chan []int64)
-	go func() {
-		for i := range array {
-			array[i] /= divider
-		}
-		future <- array
-	}()
-	return future
-}
+// func DivideFuture(array []int64, divider int64) chan []int64 {
+// 	future := make(chan []int64)
+// 	go func() {
+// 		for i := range array {
+// 			array[i] /= divider
+// 		}
+// 		future <- array
+// 	}()
+// 	return future
+// }
 
-func RemoveOddFuture(array []int64) chan []int64 {
-	future := make(chan []int64)
-	go func() {
-		newarr := make([]int64, 0)
-		for _, v := range array {
-			if v%2 == 0 {
-				newarr = append(newarr, v)
-			}
-		}
-		future <- newarr
-	}()
-	return future
-}
+// func RemoveOddFuture(array []int64) chan []int64 {
+// 	future := make(chan []int64)
+// 	go func() {
+// 		newarr := make([]int64, 0)
+// 		for _, v := range array {
+// 			if v%2 == 0 {
+// 				newarr = append(newarr, v)
+// 			}
+// 		}
+// 		future <- newarr
+// 	}()
+// 	return future
+// }
 
-func RemoveRangeFuture(array []int64, lo, hi float64, max int64) chan []int64 {
-	future := make(chan []int64)
-	go func() {
-		low := int64(float64(max) * lo)
-		high := int64(float64(max) * hi)
-		newarr := make([]int64, 0)
-		for _, v := range array {
-			if v >= low && v <= high {
-				newarr = append(newarr, v)
-			}
-		}
-		future <- newarr
-	}()
-	return future
-}
+// func RemoveRangeFuture(array []int64, lo, hi float64, max int64) chan []int64 {
+// 	future := make(chan []int64)
+// 	go func() {
+// 		low := int64(float64(max) * lo)
+// 		high := int64(float64(max) * hi)
+// 		newarr := make([]int64, 0)
+// 		for _, v := range array {
+// 			if v >= low && v <= high {
+// 				newarr = append(newarr, v)
+// 			}
+// 		}
+// 		future <- newarr
+// 	}()
+// 	return future
+// }
 
 func NumberGenerator(ch chan int64) {
 	source := rand.NewSource(time.Now().UnixNano())
@@ -82,16 +82,16 @@ func NumberGenerator(ch chan int64) {
 	}
 }
 
-func FillArrayFuture(array []int64, rng chan int64) chan []int64 {
-	future := make(chan []int64)
-	go func() {
-		for i := range array {
-			array[i] = <-rng
-		}
-		future <- array
-	}()
-	return future
-}
+// func FillArrayFuture(array []int64, rng chan int64) chan []int64 {
+// 	future := make(chan []int64)
+// 	go func() {
+// 		for i := range array {
+// 			array[i] = <-rng
+// 		}
+// 		future <- array
+// 	}()
+// 	return future
+// }
 
 func DumpArrFuture(sourcearray, destinationarray []int64, startidx int) chan []int64 {
 	future := make(chan []int64)
